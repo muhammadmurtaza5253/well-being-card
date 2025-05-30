@@ -181,6 +181,12 @@
     <div class="image-container" id="imageContainer" tabindex="0" aria-label="Click to open message">
       <img src="flowers_images.png" alt="Gentle caring hands holding a heart" />
     </div>
+    <div id="image-label">
+        <br><br>
+        <p style="color: white; font-size: 20px;">
+        Tap Flowers
+        <p>
+    </div>
 
     <!-- Heading and postcard hidden initially -->
     <h1 id="heading">Here for You, Always</h1>
@@ -213,11 +219,13 @@
 
   <script>
     const imageContainer = document.getElementById('imageContainer');
+    const imageLabel = document.getElementById('image-label');
     const postcard = document.getElementById('postcard');
     const heading = document.getElementById('heading');
 
     imageContainer.addEventListener('click', () => {
       imageContainer.style.display = 'none';
+      imageLabel.style.display = 'none';
       heading.classList.add('visible');
       postcard.classList.add('visible');
     });
