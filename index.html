@@ -1,0 +1,233 @@
+<head>
+  <title>Thinking of You with Care</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Varela Round', 'Quicksand', sans-serif;
+      background-color: #800020;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Container for everything */
+    .wrap {
+      padding: 1em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 900px;
+      /* min-height for vertical center on larger */
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* Heading shown only when postcard is visible */
+    h1 {
+      text-align: center;
+      font-size: 2em;
+      color: #f7f7f7;
+      margin-bottom: 1em;
+      padding: 0 1em;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    h1.visible {
+      opacity: 1;
+    }
+
+    /* Postcard card, hidden initially */
+    .postcard {
+      width: 100%;
+      max-width: 100%;
+      background-color: #f7f7f7;
+      border-radius: 0;
+      padding: 1.5em;
+      box-shadow: none;
+      transform: none;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+    }
+    .postcard.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .letter {
+      width: 100%;
+    }
+
+    form p {
+      display: inline;
+      font-size: 1em;
+    }
+
+    input,
+    textarea {
+      border: none;
+      border-radius: 4%;
+      height: 1.9em;
+      padding: 0.7em;
+      font-size: 1em;
+      font-family: inherit;
+      width: 100%;
+    }
+
+    textarea {
+      overflow: auto;
+      resize: none;
+      height: 250px;
+      margin-top: 0.5em;
+      margin-bottom: 1em;
+    }
+
+    #message-box {
+      width: 100%;
+      height: auto;
+      padding: 1em;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-family: inherit;
+      font-size: 15px;
+      box-sizing: border-box;
+      margin-top: 10px;
+      text-align: left;
+      overflow-y: auto;
+    }
+
+    #message-box p {
+      font-size: 15px;
+    }
+
+    footer {
+      margin-top: auto;
+      text-align: center;
+      font-family: inherit;
+      color: white;
+      padding: 1.5em 1em;
+    }
+
+    footer p {
+      font-size: 1em;
+      letter-spacing: 1px;
+    }
+
+    /* Desktop styles */
+    @media (min-width: 601px) {
+      h1 {
+        font-size: 3em;
+      }
+
+      .postcard {
+        max-width: 800px;
+        border-radius: 2%;
+        box-shadow: 0.8em 0.8em 15px rgba(0, 0, 0, 0.3);
+        transform: rotate(2.5deg);
+        transition: all 0.5s ease;
+        padding: 2em;
+      }
+
+      .postcard:hover,
+      .postcard:active,
+      .postcard:focus {
+        transform: rotate(0deg);
+      }
+
+      form p,
+      input,
+      textarea {
+        font-size: 1.1em;
+      }
+    }
+
+    /* The image container & image */
+    .image-container {
+      max-width: 300px;
+      width: 80vw;
+      cursor: pointer;
+      user-select: none;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(255 255 255 / 0.6);
+      transition: transform 0.3s ease;
+    }
+    .image-container:hover {
+      transform: scale(1.05);
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(255 255 255 / 0.6);
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <!-- Image shown first -->
+    <div class="image-container" id="imageContainer" tabindex="0" aria-label="Click to open message">
+      <img src="flowers_images.png" alt="Gentle caring hands holding a heart" />
+    </div>
+
+    <!-- Heading and postcard hidden initially -->
+    <h1 id="heading">Here for You, Always</h1>
+
+    <div class="postcard" id="postcard">
+      <div class="letter">
+        <form action="#" method="post" class="message_form">
+          <p class="push">Dear </p><p class="push">Munira!</p><br><br>
+          <label for="message">Message</label><br>
+          <div id="message-box">
+            <p>
+              I know you’re carrying a lot in your heart and mind right now. Please don’t feel like you need to rush or have everything figured out at once. It’s okay to feel uncertain. Life-changing decisions come with weight, and your feelings are completely valid.
+              <br><br>
+              I just want you to know—whatever pace you need, I respect it. I care about you deeply, and my intention isn’t to add to your stress, but to be a calm and steady presence.
+              <br><br>
+              You don’t have to go through your thoughts alone. Whether you want to talk, think out loud, or just have someone nearby while you breathe through it all—I’m here.
+            </p>
+          </div>
+          <br>
+          <p>With gentleness, </p><br>
+          <p>Muhammad</p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>Happily crafted by Muhammad Murtaza</p>
+  </footer>
+
+  <script>
+    const imageContainer = document.getElementById('imageContainer');
+    const postcard = document.getElementById('postcard');
+    const heading = document.getElementById('heading');
+
+    imageContainer.addEventListener('click', () => {
+      imageContainer.style.display = 'none';
+      heading.classList.add('visible');
+      postcard.classList.add('visible');
+    });
+
+    // Accessibility: allow keyboard "Enter" to trigger click
+    imageContainer.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        imageContainer.click();
+      }
+    });
+  </script>
+</body>
